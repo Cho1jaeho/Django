@@ -11,5 +11,5 @@ urlpatterns = [
     path('myapp/edit/<int:pk>/', views.edit_entry, name='edit_entry'),
     path('myapp/admin/', admin.site.urls),
     path('practice/', prac_views.index),
-
+    path('practice/<int:pk>/', prac_views.post_detail, name='post_detail'),
 ]
