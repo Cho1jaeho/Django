@@ -1,0 +1,18 @@
+<!-- myapp/templates/myapp/home.html -->
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+홈페이지
+{% endblock %}
+
+{% block content %}
+<h2>환영합니다, {{ username }}님!</h2>
+<p>{{ message }}</p>
+
+<h3>배우는 기술들:</h3>
+<ul>
+    {% for item in items %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

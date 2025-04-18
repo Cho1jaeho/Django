@@ -1,0 +1,12 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}
+자기 소개
+{% endblock %}
+
+{% block content %}
+<h2>안녕하세요! {{ name }}입니다 😊</h2>
+<p>🎓 전공: {{ major }}</p>
+<p>💼 관심 분야: {{ interests }}</p>
+<p>📬 이메일: {{ email }}</p>
+{% endblock %}

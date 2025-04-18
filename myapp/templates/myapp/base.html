@@ -1,0 +1,44 @@
+<!-- myapp/templates/myapp/base.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}기본 제목{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>My Django 사이트</h1>
+
+        <nav>
+            <a href="{% url 'guestbook' %}">방명록</a>
+            
+            {% if user.is_authenticated %}
+                <strong>{{ user.username }}</strong>님 |
+                
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: blue; cursor: pointer;">
+                      로그아웃
+                    </button>
+                  </form>
+                  
+            {% else %}
+                | <a href="{% url 'login' %}">로그인</a>
+            {% endif %}
+        </nav>        
+
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        기본 콘텐츠입니다.
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2025. Jaeho's Site</p>
+    </footer>
+</body>
+</html>

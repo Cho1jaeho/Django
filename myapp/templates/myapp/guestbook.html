@@ -1,0 +1,36 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}
+방명록
+{% endblock %}
+
+{% block content %}
+<h2>🌟 방명록</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">등록</button>
+</form>
+
+<hr>
+
+<h3>📬 작성된 메시지들</h3>
+<ul>
+    {% for entry in entries %}
+      <li>
+        <strong>{{ entry.name }}</strong> (by {{ entry.author.username }}): {{ entry.message }}
+  
+        {% if entry.author == user %}
+          <a href="{% url 'edit_entry' entry.pk %}">[수정]</a>
+          <a href="{% url 'delete_entry' entry.pk %}">[삭제]</a>
+        {% endif %}
+  
+        <br><br><small>{{ entry.created_at }}</small>
+      </li>
+    {% empty %}
+      <li>아직 메시지가 없어요 🫢</li>
+    {% endfor %}
+  </ul>
+  
+{% endblock %}
